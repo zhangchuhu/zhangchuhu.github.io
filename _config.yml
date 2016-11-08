@@ -1,5 +1,5 @@
 permalink: /:year/:month/:title/
-url: http://geeklu.com
+url: https://zhangchuhu.github.io
 author: hugo
 highlighter: rouge
 timezone: Asia/Shanghai
