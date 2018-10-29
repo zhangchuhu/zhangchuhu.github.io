@@ -1,11 +1,18 @@
 ---
 layout: post
-title: SpringMVC运行原理
+
+title: springmvc运行原理
+
 categories:
-- springmvc
+
+- springmvc运行原理
+
 tags:
-- springmvc
+
+- springmvc运行原理
+
 ---
+
 ### 先来看一下什么是 MVC 模式
 
 MVC 是一种设计模式.
