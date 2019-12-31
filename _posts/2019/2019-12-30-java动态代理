@@ -1,0 +1,52 @@
+---
+layout: post
+
+title: JDK动态代理的实现方式
+
+categories:
+
+- spring
+
+tags:
+
+- spring  jdk动态代理
+
+---
+## 一、动态代理的作用
+
+
+## 二、使用场景
+
+## 三、 实现方式
+### 3.1 原理
+   java通过invoke方法实现对代理对象方法的调用，所以可以通过重载invoke方法实现对代理对
+象方法增强。
+
+### 3.2 类继承体系如下
+
+  ![](https://github.com/zhangchuhu/drawio/blob/master/technologyStack/spring/JdkDynamicProxy.png)
+
+<pre>
+<code>
+public class ProxyHandler implements InvocationHandler {
+    private Object targetObject;//被代理的对象
+    //将被代理的对象传入获得它的类加载器和实现接口作为Proxy.newProxyInstance方法的参数。
+    public  Object newProxyInstance(Object targetObject){
+        this.targetObject = targetObject;
+        //targetObject.getClass().getClassLoader()：被代理对象的类加载器
+        //targetObject.getClass().getInterfaces()：被代理对象的实现接口
+        //this 当前对象，该对象实现了InvocationHandler接口所以有invoke方法，通过invoke方法可以调用被代理对象的方法
+        return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(),targetObject.getClass().getInterfaces(),this);
+    }
+    //该方法在代理对象调用方法时调用
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("记录日志");
+        return method.invoke(targetObject,args);
+    }
+};
+</code>
+</pre>
+
+
+（完）
